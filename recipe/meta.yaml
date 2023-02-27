@@ -1,5 +1,5 @@
 {% set name = "lightning-utilities" %}
-{% set version = "0.6.0.post0" %}
+{% set version = "0.7.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,35 +7,43 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/lightning-utilities-{{ version }}.tar.gz
-  sha256: 6f02cfe59e6576487e709a0e66e07671563bde9e21b40e1c567918e4d753278c
+  sha256: 9748a5466490d6e45c2df60c1ee77ff37a1a660ea6313bc0832ab7317a081cef
 
 build:
-  script: {{ PYTHON }} -m pip install . -vv
   number: 0
-  noarch: python
+  skip: True  # [py<37]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps
 
 requirements:
   host:
-    - python >=3.8
+    - python
     - pip
+    - setuptools
+    - wheel
   run:
-    - python >=3.8
-    - packaging >=20.0
+    - python
+    - importlib-metadata >=4.0.0  # [py<38]
+    - packaging >=17.1
     - typing_extensions
 
 test:
   imports:
     - lightning_utilities
-  commands:
-    - pip check
   requires:
     - pip
+  commands:
+    - pip check
 
 about:
   home: https://github.com/Lightning-AI/utilities
   summary: PyTorch Lightning Sample project.
   license: Apache-2.0
+  license_family: Apache
   license_file: LICENSE
+  description: |
+    Common Python utilities and GitHub Actions in Lightning Ecosystem.
+  dev_url: https://github.com/Lightning-AI/utilities
+  doc_url: https://github.com/Lightning-AI/utilities
 
 extra:
   recipe-maintainers:
