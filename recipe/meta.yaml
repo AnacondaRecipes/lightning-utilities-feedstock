@@ -21,6 +21,7 @@ requirements:
     - setuptools
     - wheel
   run:
+    - python
     - importlib-metadata >=4.0.0  # [py<38]
     - packaging >=17.1
     - typing_extensions
