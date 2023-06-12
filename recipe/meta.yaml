@@ -50,3 +50,5 @@ extra:
     - Borda
     - carmocca
     - Tobias-Fischer
+  skip-lints:
+    - python_build_tool_in_run
