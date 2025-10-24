@@ -1,18 +1,18 @@
 {% set name = "lightning-utilities" %}
-{% set version = "0.11.9" %}
+{% set version = "0.15.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-','_') }}-{{ version }}.tar.gz
-  sha256: f5052b81344cc2684aa9afd74b7ce8819a8f49a858184ec04548a5a109dfd053
+  url: https://github.com/Lightning-AI/{{ name.split('-')[1] }}/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: ca2206a5f6137fd53072081407fab2a870590fa1d34bb03b4d4faf99f32b439b
 
 build:
   number: 0
-  skip: True  # [py<38]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vvv
+  skip: True  # [py<39]
 
 requirements:
   host:
@@ -27,12 +27,17 @@ requirements:
     - typing_extensions
 
 test:
+  source_files:
+    - tests/unittests
   imports:
     - lightning_utilities
-  requires:
-    - pip
   commands:
     - pip check
+    - pytest -v tests/unittests/core
+  requires:
+    - pip
+    - pytest >=8.4.*
+    - requests >=2.0.0
 
 about:
   home: https://github.com/Lightning-AI/utilities
@@ -43,7 +48,7 @@ about:
   description: |
     Common Python utilities and GitHub Actions in Lightning Ecosystem.
   dev_url: https://github.com/Lightning-AI/utilities
-  doc_url: https://github.com/Lightning-AI/utilities
+  doc_url: https://dev-toolbox.rtfd.io
 
 extra:
   recipe-maintainers:
