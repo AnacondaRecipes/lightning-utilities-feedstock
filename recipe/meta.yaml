@@ -1,5 +1,5 @@
 {% set name = "lightning-utilities" %}
-{% set version = "0.15.2" %}
+{% set version = "0.15.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/Lightning-AI/{{ name.split('-')[1] }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: ca2206a5f6137fd53072081407fab2a870590fa1d34bb03b4d4faf99f32b439b
+  sha256: 0ade0cbb1c06921166bdd136c7a810ee3c16a1784de6855d8f39af1b6505add7
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vvv
-  skip: True  # [py<39]
+  skip: true  # [py<39]
 
 requirements:
   host:
