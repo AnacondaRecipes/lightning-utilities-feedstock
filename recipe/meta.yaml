@@ -12,7 +12,7 @@ source:
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vvv
-  skip: true  # [py<39]
+  skip: true  # [py<310]
 
 requirements:
   host:
@@ -22,8 +22,7 @@ requirements:
     - wheel
   run:
     - python
-    - importlib-metadata >=4.0.0  # [py<38]
-    - packaging >=17.1
+    - packaging >=22
     - typing_extensions
 
 test:
@@ -36,7 +35,7 @@ test:
     - pytest -v tests/unittests/core
   requires:
     - pip
-    - pytest >=8.4.*
+    - pytest >=9
     - requests >=2.0.0
 
 about:
