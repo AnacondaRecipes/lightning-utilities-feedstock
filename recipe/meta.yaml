@@ -47,7 +47,7 @@ about:
   description: |
     Common Python utilities and GitHub Actions in Lightning Ecosystem.
   dev_url: https://github.com/Lightning-AI/utilities
-  doc_url: https://dev-toolbox.rtfd.io
+  doc_url: https://dev-toolbox.readthedocs.io
 
 extra:
   recipe-maintainers:
